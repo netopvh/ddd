@@ -13,8 +13,10 @@
         "laravel/tinker": "~1.0",
         "league/fractal": "^0.17.0",
         "owen-it/laravel-auditing": "^4.1",
+        "pda/pheanstalk": "^3.1",
         "prettus/l5-repository": "^2.6",
         "santigarcor/laratrust": "^4.0",
+        "sinergi/browser-detector": "^6.1",
         "uxweb/sweet-alert": "^1.4",
         "watson/active": "^2.0"
     },

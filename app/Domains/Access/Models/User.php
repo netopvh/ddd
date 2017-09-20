@@ -8,6 +8,7 @@ use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use OwenIt\Auditing\Contracts\UserResolver;
 use Laratrust\Traits\LaratrustUserTrait;
+use App\Core\Notifications\ResetPassword;
 
 class User extends Authenticatable implements AuditableContract, UserResolver
 {
@@ -43,5 +44,10 @@ class User extends Authenticatable implements AuditableContract, UserResolver
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = strtoupper($value);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
     }
 }

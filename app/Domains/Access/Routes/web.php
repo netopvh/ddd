@@ -16,6 +16,8 @@ $this->group(['prefix' => 'dashboard'],function (){
         $this->get('/','UserController@index')->name('admin.users');
         $this->get('/create','UserController@create')->name('admin.users.create');
         $this->post('/','UserController@store')->name('admin.users.store');
+        $this->get('/{id}','UserController@edit')->name('admin.users.edit');
+        $this->patch('/{id}','UserController@update')->name('admin.users.update');
     });
 
     $this->group(['prefix' => 'roles'], function (){

@@ -74,7 +74,7 @@
                                 <i class="icon-lock2 text-muted"></i>
                             </div>
                             @if ($errors->has('password'))
-                                <span class="help-block">
+                                <span class="help-block text-danger">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                             @endif
@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="text-center">
-                            <a href="login_password_recover.html">Esqueceu a Senha?</a>
+                            <a href="{{ route('password.request') }}">Esqueceu a Senha?</a>
                         </div>
                     </div>
                 </form>

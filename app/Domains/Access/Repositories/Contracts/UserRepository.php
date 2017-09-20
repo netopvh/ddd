@@ -10,5 +10,6 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface UserRepository extends RepositoryInterface
 {
-    //
+    public function filterUsers($field, $value, $columns = ['*']);
+    public function findUser($id);
 }

@@ -7,10 +7,9 @@ use App\Exceptions\Access\GeneralException;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Domains\Access\Repositories\Contracts\UserRepository;
-use App\Domains\Access\Repositories\Contracts\RoleRepository;
 use App\Domains\Access\Models\User;
 use Prettus\Repository\Events\RepositoryEntityCreated;
-use Illuminate\Container\Container as Application;
+use Prettus\Repository\Events\RepositoryEntityUpdated;
 
 /**
  * Class UserRepositoryEloquent
@@ -44,13 +43,15 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     }
 
     /**
-     * Save a new entity in repository
+     * @override
      *
      * @throws GeneralException
      *
      * @param array $attributes
      *
      * @return mixed
+     *
+     *
      */
     public function create(array $attributes)
     {
@@ -63,14 +64,69 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         if (empty($result)){
             throw new GeneralException('Usuário já consta em nosso banco de dados');
         }
+
         $model = $this->model->newInstance($attributes);
         if($model->save()){
-            $model->newQuery()->attachRole($attributes['role_id']);
+            $model->roles()->attach($attributes['role_id']);
         }
         $this->resetModel();
 
         event(new RepositoryEntityCreated($this, $model));
 
         return $this->parserResult($model);
+    }
+
+    /**
+     * @Override
+     *
+     * @throws GeneralException
+     *
+     * @param array $attributes
+     * @param       $id
+     *
+     * @return mixed
+     */
+    public function update(array $attributes, $id)
+    {
+        $this->applyScope();
+
+        $temporarySkipPresenter = $this->skipPresenter;
+
+        $this->skipPresenter(true);
+
+        $model = $this->model->findOrFail($id);
+        $model->fill($attributes);
+        if($model->save()){
+            $model->roles()->detach();
+            $model->roles()->attach($attributes['role_id']);
+        }
+
+        $this->skipPresenter($temporarySkipPresenter);
+        $this->resetModel();
+
+        event(new RepositoryEntityUpdated($this, $model));
+
+        return $this->parserResult($model);
+    }
+
+    /**
+     * @param $field
+     * @param $value
+     * @param array $columns
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function filterUsers($field, $value, $columns = ['*'])
+    {
+        return $this->model->newQuery()->where($field,'like','%'. $value .'%')->paginate(8);
+    }
+
+    public function findUser($id)
+    {
+        $result = $this->model->newQuery()->where('id', $id)->get()->first();
+        if (is_null($result)){
+            throw new GeneralException("Não foi localizado nenhum registro no banco de dados");
+        }
+
+        return $result;
     }
 }

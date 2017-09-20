@@ -40,7 +40,7 @@
 													<button class="btn btn-default btn-icon legitRipple"
                                                             type="button"><i class="icon-user"></i></button>
 												</span>
-                                            <input type="text" class="form-control"
+                                            <input type="text" name="search" class="form-control"
                                                    placeholder="Digite o nome do usuário">
                                             <span class="input-group-btn">
 													<button class="btn btn-default legitRipple"
@@ -83,7 +83,7 @@
                                 </td>
                                 <td>
                                     <ul class="icons-list">
-                                        <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                        <li><a href="{{ route('admin.users.edit',['id' => $user->id]) }}"><i class="icon-pencil7"></i></a></li>
                                         <li><a href="#"><i class="icon-trash"></i></a></li>
                                     </ul>
                                 </td>

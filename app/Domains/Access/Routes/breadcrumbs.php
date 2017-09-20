@@ -14,6 +14,11 @@ Breadcrumbs::register('admin.users.add', function ($breadcrumbs) {
     $breadcrumbs->push('Novo', route('admin.users.create'));
 });
 
+Breadcrumbs::register('admin.users.edit', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.users');
+    $breadcrumbs->push('Editar', '');
+});
+
 /**
  * Roles
  */

@@ -67,7 +67,7 @@
 <script type="text/javascript" src="{{ asset('backend/js/theme-183762e5ae.js') }}"></script>
 @stack('scripts-before')
 
-<script type="text/javascript" src="{{ asset('backend/js/bundle-e61171be01.js') }}"></script>
+<script type="text/javascript" src="{{ asset('backend/js/bundle-8be636b056.js') }}"></script>
 @include('sweet::alert')
 @stack('scripts-after')
 <!-- /theme JS files -->
