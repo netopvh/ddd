@@ -3,7 +3,6 @@ var concat = require('gulp-concat');
 var cleanCss = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 var less = require('gulp-less');
-var path = require('path');
 var rev = require('gulp-rev');
 var rename = require('gulp-rename');
 
@@ -38,6 +37,8 @@ gulp.task('theme', function () {
         'resources/assets/js/plugins/pickers/pickadate/picker.js',
         'resources/assets/js/plugins/pickers/pickadate/picker.date.js',
         'resources/assets/js/plugins/pickers/pickadate/legacy.js',
+        'resources/assets/js/plugins/notifications/sweet_alert.min.js',
+        'resources/assets/js/plugins/notifications/bootbox.min.js',
         'resources/assets/js/plugins/forms/validation/validate.min.js',
         'resources/assets/js/plugins/forms/validation/additional_methods.min.js',
         'resources/assets/js/plugins/forms/validation/localization/messages_pt_BR.js',
@@ -46,7 +47,7 @@ gulp.task('theme', function () {
         'resources/assets/js/plugins/ui/nicescroll.min.js'])
         .pipe(concat('js/theme.js'))
         .pipe(uglify())
-        //.pipe(rev())
+        .pipe(rev())
         .pipe(gulp.dest('public/backend'));
 });
 

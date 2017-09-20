@@ -5,6 +5,7 @@ namespace App\Domains\Access\Controllers;
 use App\Core\Http\Controllers\Controller;
 use App\Domains\Access\Repositories\Contracts\RoleRepository;
 use App\Domains\Access\Repositories\Contracts\UserRepository;
+use App\Exceptions\Access\GeneralException;
 use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\VarDumper;
 
@@ -36,7 +37,13 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        try{
+            if ($this->userRepository->create($request->all())){
+                return redirect()->route('admin.users')->with('success','Registro inserido com sucesso!');
+            }
+        }catch (GeneralException $e){
+            return redirect()->back()->with('errors',$e->getMessage());
+        }
     }
 
     public function edit($id)

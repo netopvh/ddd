@@ -39,4 +39,9 @@ class User extends Authenticatable implements AuditableContract, UserResolver
     {
         return auth()->check() ? auth()->user()->getAuthIdentifier() : null;
     }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtoupper($value);
+    }
 }

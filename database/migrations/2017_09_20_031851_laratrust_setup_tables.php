@@ -86,6 +86,7 @@ class LaratrustSetupTables extends Migration
         Schema::dropIfExists('permission_user');
         Schema::dropIfExists('permission_role');
         Schema::dropIfExists('permissions');
+        Schema::dropIfExists('permissions_group');
         Schema::dropIfExists('role_user');
         Schema::dropIfExists('roles');
     }

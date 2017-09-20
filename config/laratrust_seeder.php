@@ -21,9 +21,9 @@ return [
         ],
     ],
     'permissions_map' => [
-        'c' => 'create',
-        'r' => 'read',
-        'u' => 'update',
-        'd' => 'delete'
+        'c' => 'criar',
+        'r' => 'ler',
+        'u' => 'atualizar',
+        'd' => 'remover'
     ]
 ];

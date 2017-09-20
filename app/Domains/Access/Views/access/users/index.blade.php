@@ -1,5 +1,13 @@
 @extends('layout.backend.app')
 
+@section('page-header')
+    @component('layout.backend.components.header')
+        @slot('title')
+            Usuários
+        @endslot
+    @endcomponent
+@stop
+
 @section('breadcrumb')
     {{ Breadcrumbs::render('admin.users') }}
 @stop
@@ -9,8 +17,6 @@
         <div class="col-md-12">
             <div class="panel panel-flat">
                 <div class="panel-heading">
-                    <h5 class="panel-title">Usuários<a class="heading-elements-toggle"><i class="icon-more"></i></a>
-                    </h5>
                     <div class="heading-elements">
                         <ul class="icons-list">
                             <li><a data-action="collapse"></a></li>
@@ -18,7 +24,8 @@
                         </ul>
                     </div>
                     <br>
-                    <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-raised legitRipple"><i class="icon-database-add"></i>
+                    <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-raised legitRipple"><i
+                                class="icon-database-add"></i>
                         Cadastrar</a>
                 </div>
                 <div class="panel-body">
@@ -62,7 +69,11 @@
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>Administrador</td>
+                                <td>
+                                    @foreach($user->roles as $role)
+                                        {{ $role->display_name }}
+                                    @endforeach
+                                </td>
                                 <td>
                                     @if($user->status)
                                         <span class="label label-success">Ativo</span>

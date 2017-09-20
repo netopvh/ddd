@@ -1,5 +1,13 @@
 @extends('layout.backend.app')
 
+@section('page-header')
+@component('layout.backend.components.header')
+    @slot('title')
+        Usuários
+    @endslot
+@endcomponent
+@stop
+
 @section('breadcrumb')
     {{ Breadcrumbs::render('admin.users.add') }}
 @stop
@@ -39,16 +47,24 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>E-mail:</label>
+                                        <input name="email" type="email" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Senha:</label>
-                                        <input name="password" type="password" class="form-control" required>
+                                        <input name="password" id="password" type="password" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Repetir Senha:</label>
-                                        <input name="repeat" type="password" class="form-control" required>
+                                        <input name="repeat_password" type="password" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -70,6 +86,7 @@
                         </fieldset>
 
                         <div class="text-right">
+                            <a href="{{ route('admin.users') }}" class="btn btn-info legitRipple"><i class="icon-database-arrow"></i> Retornar</a>
                             <button type="submit" class="btn btn-primary legitRipple">Salvar Registro <i
                                         class="icon-database-insert position-right"></i></button>
                         </div>

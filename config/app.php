@@ -171,6 +171,8 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Watson\Active\ActiveServiceProvider::class,
         Laratrust\LaratrustServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -234,6 +236,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Active' => Watson\Active\Facades\Active::class,
         'Laratrust'   => Laratrust\LaratrustFacade::class,
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

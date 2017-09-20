@@ -7,9 +7,10 @@ use App\Exceptions\Access\GeneralException;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Domains\Access\Repositories\Contracts\UserRepository;
+use App\Domains\Access\Repositories\Contracts\RoleRepository;
 use App\Domains\Access\Models\User;
-use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Repository\Events\RepositoryEntityCreated;
+use Illuminate\Container\Container as Application;
 
 /**
  * Class UserRepositoryEloquent
@@ -17,6 +18,7 @@ use Prettus\Repository\Events\RepositoryEntityCreated;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
+
     /**
      * Specify Model class name
      *
@@ -31,7 +33,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     {
         return UserValidator::class;
     }
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -52,17 +54,19 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      */
     public function create(array $attributes)
     {
-        if (!is_null($this->validator)) {
-            // we should pass data that has been casts by the model
-            // to make sure data type are same because validator may need to use
-            // this data to compare with data that fetch from database.
-            $attributes = $this->model->newInstance()->forceFill($attributes)->toArray();
+        //Verifica se existe usuário no banco de dados
+        $result = $this->model->newQuery()
+            ->where('name', $attributes['name'])
+            ->where('username', $attributes['username'])
+            ->get();
 
-            $this->validator->with($attributes)->passesOrFail(ValidatorInterface::RULE_CREATE);
+        if (empty($result)){
+            throw new GeneralException('Usuário já consta em nosso banco de dados');
         }
-
         $model = $this->model->newInstance($attributes);
-        $model->save();
+        if($model->save()){
+            $model->newQuery()->attachRole($attributes['role_id']);
+        }
         $this->resetModel();
 
         event(new RepositoryEntityCreated($this, $model));
