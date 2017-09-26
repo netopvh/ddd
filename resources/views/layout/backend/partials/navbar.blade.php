@@ -15,7 +15,6 @@
         </ul>
 
         <div class="navbar-right">
-            <p class="navbar-text">Bom dia, Angelo!</p>
             <p class="navbar-text"><span class="label bg-success-400">Online</span></p>
 
             <ul class="nav navbar-nav">
@@ -36,6 +35,8 @@
 
                         <ul class="media-list dropdown-content-body width-350">
                             <li class="media">
+                                Sem notificações a serem exibidas
+                                <!--
                                 <div class="media-left">
                                     <a href="#" class="btn bg-success-400 btn-rounded btn-icon btn-xs"><i class="icon-mention"></i></a>
                                 </div>
@@ -44,17 +45,7 @@
                                     <a href="#">Taylor Swift</a> mentioned you in a post "Angular JS. Tips and tricks"
                                     <div class="media-annotation">4 minutes ago</div>
                                 </div>
-                            </li>
-
-                            <li class="media">
-                                <div class="media-left">
-                                    <a href="#" class="btn bg-teal-400 btn-rounded btn-icon btn-xs"><i class="icon-spinner11"></i></a>
-                                </div>
-
-                                <div class="media-body">
-                                    <strong>January, 2016</strong> - 1320 new users, 3284 orders, $49,390 revenue
-                                    <div class="media-annotation">Feb 1, 05:46</div>
-                                </div>
+                                -->
                             </li>
                         </ul>
                     </div>

@@ -33,4 +33,8 @@ $this->group(['prefix' => 'dashboard','middleware' => ['permission:ver-administr
     $this->group(['prefix' => 'audit'], function (){
         $this->get('/','AuditController@index')->middleware('permission:ver-administracao')->name('admin.auditor');
     });
+
+    $this->group(['prefix' => 'account'], function (){
+        $this->get('/','ContaController@index')->name('admin.account');
+    });
 });

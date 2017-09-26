@@ -38,9 +38,17 @@ Breadcrumbs::register('admin.roles.edit', function ($breadcrumbs) {
 
 
 /**
- * Permissions
+ * Auditor
  */
 Breadcrumbs::register('admin.auditor', function ($breadcrumbs) {
     $breadcrumbs->parent('admin.home');
     $breadcrumbs->push('Auditoria e Logs', route('admin.auditor'));
+});
+
+/**
+ * Auditor
+ */
+Breadcrumbs::register('admin.account', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.home');
+    $breadcrumbs->push('Configurações de Conta', route('admin.account'));
 });
