@@ -2,6 +2,7 @@
 
 namespace App\Domains\Access\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use OwenIt\Auditing\Auditable;
@@ -13,7 +14,7 @@ use App\Core\Notifications\ResetPassword;
 class User extends Authenticatable implements AuditableContract, UserResolver
 {
     use LaratrustUserTrait;
-    use Notifiable, Auditable;
+    use Notifiable, Auditable,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -43,7 +44,7 @@ class User extends Authenticatable implements AuditableContract, UserResolver
 
     public function setNameAttribute($value)
     {
-        $this->attributes['name'] = strtoupper($value);
+        $this->attributes['name'] = mb_strtoupper($value,'UTF-8');
     }
 
     public function sendPasswordResetNotification($token)

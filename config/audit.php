@@ -23,7 +23,7 @@ return [
     |
     */
 
-    'implementation' => OwenIt\Auditing\Models\Audit::class,
+    'implementation' => App\Domains\Access\Models\Audit::class,
 
     /*
     |--------------------------------------------------------------------------

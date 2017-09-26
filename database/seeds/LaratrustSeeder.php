@@ -37,7 +37,7 @@ class LaratrustSeeder extends Seeder
                     $permissionValue = $mapPermission->get($perm);
 
                     $permission = \App\Domains\Access\Models\Permission::firstOrCreate([
-                        'name' => $permissionValue . '-' . $module,
+                        'name' => $permissionValue . '-' . str_slug($module),
                         'display_name' => ucfirst($permissionValue) . ' ' . ucfirst($module),
                         'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
                     ]);
@@ -57,45 +57,12 @@ class LaratrustSeeder extends Seeder
             $user = \App\Domains\Access\Models\User::create([
                 'name' => strtoupper(str_replace("_", " ", $key)),
                 'username' => mt_rand(1000,9999),
-                'email' => $key.'@app.com',
+                'email' => $key.'@gmail.com',
                 'password' => bcrypt('123456')
             ]);
             $user->attachRole($role);
         }
 
-        // creating user with permissions
-        if (!empty($userPermission)) {
-            foreach ($userPermission as $key => $modules) {
-                foreach ($modules as $module => $value) {
-                    $permissions = explode(',', $value);
-                    // Create default user for each permission set
-                    $user = \App\Domains\Access\Models\User::create([
-                        'name' => ucwords(str_replace("_", " ", $key)),
-                        'username' => '3335',
-                        'email' => $key.'@app.com',
-                        'password' => bcrypt('123456'),
-                        'remember_token' => str_random(10),
-                    ]);
-                    foreach ($permissions as $p => $perm) {
-                        $permissionValue = $mapPermission->get($perm);
-
-                        $permission = \App\Domains\Access\Models\Permission::firstOrCreate([
-                            'name' => $permissionValue . '-' . $module,
-                            'display_name' => ucfirst($permissionValue) . ' ' . ucfirst($module),
-                            'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
-                        ]);
-
-                        $this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
-                        
-                        if (!$user->hasPermission($permission->name)) {
-                            $user->attachPermission($permission);
-                        } else {
-                            $this->command->info($key . ': ' . $p . ' ' . $permissionValue . ' already exist');
-                        }
-                    }
-                }
-            }
-        }
     }
 
     /**

@@ -95,8 +95,7 @@
 
                 <!-- Footer -->
                 <div class="footer text-muted text-center">
-                    &copy; 2017. <a href="#">Sistema de Gestão</a> by <a href="http://themeforest.net/user/Kopyov"
-                                                                         target="_blank">Angelo Neto</a>
+                    @include('layout.backend.partials.footer')
                 </div>
                 <!-- /footer -->
 

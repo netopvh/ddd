@@ -3,16 +3,17 @@
 return [
     'role_structure' => [
         'superadministrador' => [
-            'users' => 'c,r,u,d',
-            'acl' => 'c,r,u,d',
-            'profile' => 'r,u'
+            'administração' => 'r',
+            'usuário' => 'c,u,d',
+            'perfil' => 'c,u,d',
         ],
         'administrador' => [
-            'users' => 'c,r,u,d',
-            'profile' => 'r,u'
+            'administração' => 'r',
+            'usuário' => 'c,u,d',
+            'perfil' => 'c,u',
         ],
         'usuário' => [
-            'profile' => 'r,u'
+            'administração' => 'r'
         ],
     ],
     'permission_structure' => [
@@ -22,7 +23,7 @@ return [
     ],
     'permissions_map' => [
         'c' => 'criar',
-        'r' => 'ler',
+        'r' => 'ver',
         'u' => 'atualizar',
         'd' => 'remover'
     ]

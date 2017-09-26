@@ -5,10 +5,10 @@ namespace App\Domains\Access\Repositories\Contracts;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface RoleRepository
+ * Interface AuditRepository
  * @package namespace App\Domains\Access\Repositories\Contracts;
  */
-interface RoleRepository extends RepositoryInterface
+interface AuditRepository extends RepositoryInterface
 {
-    public function findRole($id);
+    //
 }

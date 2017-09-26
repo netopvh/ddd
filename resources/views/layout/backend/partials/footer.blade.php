@@ -1,5 +1,1 @@
-<!-- Footer -->
-<div class="footer text-muted">
-    &copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
-</div>
-<!-- /footer -->
+&copy; 2017. <a href="#">e-Gestão CGM</a> Desenvolvido por <a href="http://themeforest.net/user/Kopyov" target="_blank">ODP CGM</a>

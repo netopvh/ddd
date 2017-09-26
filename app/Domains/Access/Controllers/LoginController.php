@@ -54,4 +54,12 @@ class LoginController extends Controller
         //return $request->only($this->username(), 'password');
         return ['username' => $request->{$this->username()}, 'password' => $request->password, 'status' => 1];
     }
+
+    /**
+     * @return string
+     */
+    protected function redirectTo()
+    {
+        return '/dashboard';
+    }
 }

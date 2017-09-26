@@ -19,7 +19,6 @@
 
             <div class="navigation-wrapper collapse" id="user-nav">
                 <ul class="navigation">
-                    <li><a href="#"><i class="icon-user-plus"></i> <span>Meu perfil</span></a></li>
                     <li><a href="#"><i class="icon-comment-discussion"></i> <span><span
                                         class="badge bg-teal-400 pull-right">58</span> Mensagens</span></a></li>
                     <li class="divider"></li>
@@ -57,9 +56,10 @@
                     </li>
                     <!-- /gerenciamento -->
 
-                    <!-- Administração -->
+                    @permission('ver-administracao')
+                <!-- Administração -->
                     <li class="navigation-header"><span>Administração</span> <i class="icon-menu"
-                                                                                title="Gerenciamento"></i></li>
+                                                                                title="Administração"></i></li>
                     <li>
                         <a href="#"><i class="icon-stack"></i> <span>Gerenciamento de Acesso</span></a>
                         <ul>
@@ -68,14 +68,12 @@
                             <li class="{{ active(['admin.roles','admin.roles.*']) }}"><a
                                         href="{{ route('admin.roles') }}"><i class="icon-users4"></i> Perfil de
                                     Acesso</a></li>
-                            <li class="{{ active(['admin.permissions','admin.permissions.*']) }}"><a
-                                        href="{{ route('admin.permissions') }}"><i class="icon-unlocked"></i> Permissões</a>
-                            </li>
                         </ul>
                     </li>
                     <li><a href=""><i class="icon-cog"></i> Parâmetros do Sistema</a></li>
-                    <li><a href=""><i class="icon-stack-star"></i> Auditoria e Logs</a></li>
+                    <li class="{{ active(['admin.auditor']) }}"><a href="{{ route('admin.auditor') }}"><i class="icon-stack-star"></i> Auditoria e Logs</a></li>
                     <!-- /administracao -->
+                    @endpermission
                 </ul>
             </div>
         </div>

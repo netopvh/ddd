@@ -17,7 +17,7 @@
         <div class="col-md-6">
             <div class="panel panel-flat">
                 <div class="panel-heading">
-                    <h5 class="panel-title"><i class="icon-forward"></i> Editar usuário<a
+                    <h5 class="panel-title"><i class="icon-forward"></i> Editar Usuário<a
                                 class="heading-elements-toggle"><i class="icon-more"></i></a>
                     </h5>
                     <div class="heading-elements">
@@ -32,7 +32,7 @@
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
                         <fieldset>
-                            <legend class="text-semibold">Entre com as informações</legend>
+                            <legend class="text-semibold">Atualize as informações</legend>
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group">

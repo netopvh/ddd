@@ -688,6 +688,33 @@ $(function() {
         var switchery = new Switchery(html);
     });
 
+    $('table[data-form="deleteForm"]').on('click', '.form-delete', function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        $('#confirm').modal({backdrop: 'static', keyboard: false})
+            .on('click', '#delete-btn', function () {
+                $form.submit();
+            });
+    });
+
+    // Basic example
+    $('.listbox').bootstrapDualListbox({
+        nonSelectedListLabel: 'Todas Permissões',
+        selectedListLabel: 'Permissões Selecionadas',
+        filterPlaceHolder: 'Pesquisar',
+        moveAllLabel: 'Mover Tudo',
+        removeAllLabel: 'Remover Tudo',
+        infoText: 'Mostrando todos os {0}',
+        infoTextEmpty: 'Lista Vazia'
+    });
+
+
+    // Multiple selection
+    $('.listbox-no-selection').bootstrapDualListbox({
+        preserveSelectionOnMove: 'moved',
+        moveOnSelect: false
+    });
+
     // Setup validation
     // ------------------------------
 

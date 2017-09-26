@@ -24,9 +24,11 @@
                         </ul>
                     </div>
                     <br>
+                    @permission('criar-usuario')
                     <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-raised legitRipple"><i
                                 class="icon-database-add"></i>
                         Cadastrar</a>
+                    @endpermission
                 </div>
                 <div class="panel-body">
                     <form action="">
@@ -54,7 +56,7 @@
                     </form>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-framed table-bordered table-striped text-size-base">
+                    <table class="table table-framed table-bordered table-striped text-size-base" data-form="deleteForm">
                         <thead>
                         <tr>
                             <th width="70">#</th>
@@ -83,14 +85,47 @@
                                 </td>
                                 <td>
                                     <ul class="icons-list">
-                                        <li><a href="{{ route('admin.users.edit',['id' => $user->id]) }}"><i class="icon-pencil7"></i></a></li>
-                                        <li><a href="#"><i class="icon-trash"></i></a></li>
+                                        @permission('atualizar-usuario')
+                                        <li><a href="{{ route('admin.users.edit',['id' => $user->id]) }}"><i
+                                                        class="icon-pencil7"></i></a></li>
+                                        @endpermission
+                                        @permission('remover-usuario')
+                                        <li>
+                                            <form class="form-delete"
+                                                  action="{{ route('admin.users.destroy',['id' => $user->id]) }}"
+                                                  method="POST">
+                                                <input type="hidden" name="id" value="{{ $user->id }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button name="delete-modal" class="delete"
+                                                        style="padding: 0 0 0 0;border: 0; background: transparent;"><i
+                                                            class="icon-trash" style="padding-top: 2px;"></i></button>
+                                            </form>
+                                        </li>
+                                        @endpermission
                                     </ul>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="confirm">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Remoção de registro</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja remover este registro?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-primary" id="delete-btn">Remover</button>
+                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>

@@ -14898,6 +14898,11 @@ a.badge,
 body[class*=navbar-bottom] .content {
   padding-bottom: 20px;
 }
+.content button {
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
 /* ------------------------------------------------------------------------------
 *
 *  # Boxed layout

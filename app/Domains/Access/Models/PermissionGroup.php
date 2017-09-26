@@ -10,6 +10,6 @@ class PermissionGroup extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $fillable = [];
+    protected $fillable = ['parent_id','name','sort'];
 
 }

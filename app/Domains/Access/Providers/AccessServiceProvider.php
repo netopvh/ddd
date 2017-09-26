@@ -9,6 +9,8 @@ use App\Domains\Access\Repositories\PermissionGroupRepositoryEloquent;
 use App\Domains\Access\Repositories\PermissionRepositoryEloquent;
 use App\Domains\Access\Repositories\RoleRepositoryEloquent;
 use App\Domains\Access\Repositories\UserRepositoryEloquent;
+use App\Domains\Access\Repositories\Contracts\AuditRepository;
+use App\Domains\Access\Repositories\AuditRepositoryEloquent;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -45,6 +47,7 @@ class AccessServiceProvider extends ServiceProvider
         $this->app->bind(RoleRepository::class, RoleRepositoryEloquent::class);
         $this->app->bind(PermissionRepository::class, PermissionRepositoryEloquent::class);
         $this->app->bind(PermissionGroupRepository::class, PermissionGroupRepositoryEloquent::class);
+        $this->app->bind(AuditRepository::class, AuditRepositoryEloquent::class);
     }
 
     /**

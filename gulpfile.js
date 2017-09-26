@@ -37,6 +37,7 @@ gulp.task('theme', function () {
         'resources/assets/js/plugins/pickers/pickadate/picker.js',
         'resources/assets/js/plugins/pickers/pickadate/picker.date.js',
         'resources/assets/js/plugins/pickers/pickadate/legacy.js',
+        'resources/assets/js/plugins/forms/inputs/duallistbox.min.js',
         'resources/assets/js/plugins/notifications/sweet_alert.min.js',
         'resources/assets/js/plugins/notifications/bootbox.min.js',
         'resources/assets/js/plugins/forms/validation/validate.min.js',
